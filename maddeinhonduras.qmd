@@ -4,8 +4,143 @@ title: "maddeinhonduras"
 
 ## Quarto
 
+```{r}
+library(psych)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(foreign)
+library(ggplot2)
+library(magrittr)
+
+library(readr)
+qual2 <- read_csv("RStudio_GitHub Merged Data (QUAL) - Qual.csv")
+
+```
+
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
+#QUESTION1-NONCOLONIA
 ```{r}
-1 + 1
+qual2 |>
+  filter(preg_uno != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_uno) |>
+mutate(prob = n/sum(n))
+
 ```
+
+#QUESTION1-LACOLONIA
+```{r}
+qual2 |>
+  filter(preg_uno != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_uno) |>
+mutate(prob = n/sum(n))
+```
+
+
+#QUESTION2
+```{r}
+qual2 |>
+  filter(preg_dos != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_dos) |>
+mutate(prob = n/sum(n))
+
+qual2 |>
+  filter(preg_dos != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_dos) |>
+mutate(prob = n/sum(n))
+```
+
+
+
+
+#QUESTION3
+```{r}
+qual2 |>
+  filter(preg_tres != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_tres) |>
+mutate(prob = n/sum(n))
+
+qual2 |>
+  filter(preg_tres != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_tres) |>
+mutate(prob = n/sum(n))
+```
+
+
+#QUESTION4
+
+```{r}
+qual2 |>
+  filter(preg_cuatro != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_cuatro) |>
+mutate(prob = n/sum(n))
+
+qual2 |>
+  filter(preg_cuatro != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_cuatro) |>
+mutate(prob = n/sum(n))
+```
+
+
+
+```{r}
+qual2 |>
+  filter(preg_cinco != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_cinco) |>
+mutate(prob = n/sum(n))
+
+qual2 |>
+  filter(preg_cinco != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_cinco) |>
+mutate(prob = n/sum(n))
+```
+
+```{r}
+qual2 |>
+  filter(preg_seis != 'NA')|>
+  filter(colonia == 'No') |>
+ count(preg_seis) |>
+mutate(prob = n/sum(n))
+
+qual2 |>
+  filter(preg_seis != 'NA')|>
+  filter(colonia == 'Yes') |>
+ count(preg_seis) |>
+mutate(prob = n/sum(n))
+```
+
+
+
+```{r}
+qual2 |>
+ count(survey_location == 'Community') |>
+mutate(prob = n/sum(n))
+
+```
+
+
+```{r}
+table_region_disability <- table(qual2$island_region, qual2$colonia)
+table_region_disability
+prop.table(table_region_disability, margin = 2)
+```
+
+
+```{r}
+qual2 |>
+  filter(colonia == "Yes")|>
+  filter(island_region == '2')
+```
+
