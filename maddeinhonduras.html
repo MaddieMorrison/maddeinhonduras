@@ -134,7 +134,7 @@ The following object is masked from 'package:tidyr':
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>qual2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RStudio_GitHub Merged Data (QUAL) - Qual.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Rows: 436 Columns: 25
+<pre><code>Rows: 435 Columns: 25
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr (17): date, group_no, survey_lang, relation_to_child, community, colonia...
@@ -156,9 +156,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_uno     n   prob
   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;
-1 No          25 0.101 
-2 Unsure       6 0.0242
-3 Yes        217 0.875 </code></pre>
+1 No          24 0.0984
+2 Unsure       6 0.0246
+3 Yes        214 0.877 </code></pre>
 </div>
 </div>
 <p>#QUESTION1-LACOLONIA</p>
@@ -172,9 +172,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_uno     n   prob
   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;
-1 No          26 0.140 
-2 Unsure       5 0.0269
-3 Yes        155 0.833 </code></pre>
+1 No          26 0.141 
+2 Unsure       5 0.0270
+3 Yes        154 0.832 </code></pre>
 </div>
 </div>
 <p>#QUESTION2</p>
@@ -188,9 +188,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_dos     n    prob
   &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt;
-1 No           1 0.00405
-2 Unsure      69 0.279  
-3 Yes        177 0.717  </code></pre>
+1 No           1 0.00410
+2 Unsure      68 0.279  
+3 Yes        175 0.717  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>qual2 <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(preg_dos <span class="sc">!=</span> <span class="st">'NA'</span>)<span class="sc">|&gt;</span></span>
@@ -201,9 +201,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_dos     n   prob
   &lt;chr&gt;    &lt;int&gt;  &lt;dbl&gt;
-1 No           5 0.0269
-2 Unsure      36 0.194 
-3 Yes        145 0.780 </code></pre>
+1 No           5 0.0270
+2 Unsure      36 0.195 
+3 Yes        144 0.778 </code></pre>
 </div>
 </div>
 <p>#QUESTION3</p>
@@ -217,9 +217,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_tres     n  prob
   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;
-1 No           36 0.147
-2 Unsure       35 0.143
-3 Yes         174 0.710</code></pre>
+1 No           36 0.148
+2 Unsure       34 0.139
+3 Yes         174 0.713</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>qual2 <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(preg_tres <span class="sc">!=</span> <span class="st">'NA'</span>)<span class="sc">|&gt;</span></span>
@@ -230,9 +230,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_tres     n  prob
   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;
-1 No           32 0.172
-2 Unsure       34 0.183
-3 Yes         120 0.645</code></pre>
+1 No           31 0.168
+2 Unsure       34 0.184
+3 Yes         120 0.649</code></pre>
 </div>
 </div>
 <p>#QUESTION4</p>
@@ -246,9 +246,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_cuatro     n   prob
   &lt;chr&gt;       &lt;int&gt;  &lt;dbl&gt;
-1 No             56 0.229 
-2 Unsure         14 0.0571
-3 Yes           175 0.714 </code></pre>
+1 No             56 0.230 
+2 Unsure         14 0.0574
+3 Yes           174 0.713 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>qual2 <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(preg_cuatro <span class="sc">!=</span> <span class="st">'NA'</span>)<span class="sc">|&gt;</span></span>
@@ -274,8 +274,8 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 2 × 3
   preg_cinco     n    prob
   &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;
-1 No             1 0.00407
-2 Yes          245 0.996  </code></pre>
+1 No             1 0.00410
+2 Yes          243 0.996  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>qual2 <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(preg_cinco <span class="sc">!=</span> <span class="st">'NA'</span>)<span class="sc">|&gt;</span></span>
@@ -286,8 +286,8 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 2 × 3
   preg_cinco     n    prob
   &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;
-1 No             1 0.00538
-2 Yes          185 0.995  </code></pre>
+1 No             1 0.00541
+2 Yes          184 0.995  </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -300,9 +300,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_seis     n    prob
   &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;
-1 No            3 0.0122 
-2 Unsure        1 0.00407
-3 Yes         242 0.984  </code></pre>
+1 No            3 0.0123 
+2 Unsure        1 0.00410
+3 Yes         240 0.984  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>qual2 <span class="sc">|&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(preg_seis <span class="sc">!=</span> <span class="st">'NA'</span>)<span class="sc">|&gt;</span></span>
@@ -313,9 +313,9 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 3 × 3
   preg_seis     n    prob
   &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;
-1 No            1 0.00538
-2 Unsure        1 0.00538
-3 Yes         184 0.989  </code></pre>
+1 No            1 0.00541
+2 Unsure        1 0.00541
+3 Yes         183 0.989  </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -326,8 +326,8 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <pre><code># A tibble: 2 × 3
   `survey_location == "Community"`     n  prob
   &lt;lgl&gt;                            &lt;int&gt; &lt;dbl&gt;
-1 FALSE                              170 0.390
-2 TRUE                               266 0.610</code></pre>
+1 FALSE                              170 0.391
+2 TRUE                               265 0.609</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -336,7 +336,7 @@ dbl  (8): island_region, household_size, kids_under_eleven, respondent_birth...
 <div class="cell-output cell-output-stdout">
 <pre><code>   
      No Yes
-  1  70 187
+  1  70 186
   2  84   0
   3  64   0
   4  24   0
