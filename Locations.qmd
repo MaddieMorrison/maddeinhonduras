@@ -1,0 +1,91 @@
+
+
+```{r}
+library(psych)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(foreign)
+library(ggplot2)
+library(magrittr)
+
+```
+
+```{r}
+qual |>
+ count(`island_region`) |>
+mutate(prob = n/sum(n))
+
+```
+
+
+
+
+
+```{r}
+table_preg_uno_colonia <- table(qual$preg_uno, qual$colonia)
+print(table_preg_uno_colonia)
+
+fisher_result <- fisher.test(table_preg_uno_colonia)
+print(fisher_result)
+
+```
+
+```{r}
+table_preg_dos_colonia <- table(qual$colonia, qual$preg_dos)
+print(table_preg_dos_colonia)
+
+fisher_result <- fisher.test(table_preg_dos_colonia)
+print(fisher_result)
+```
+
+```{r}
+table_preg_tres_colonia <- table(qual$colonia, qual$preg_tres)
+print(table_preg_tres_colonia)
+
+fisher_result <- fisher.test(table_preg_tres_colonia)
+print(fisher_result)
+```
+
+
+
+```{r}
+table_preg_cuatro_colonia <- table(qual$colonia, qual$preg_cuatro)
+print(table_preg_cuatro_colonia)
+
+fisher_result <- fisher.test(table_preg_cuatro_colonia)
+print(fisher_result)
+```
+
+
+```{r}
+table_preg_cinco_colonia <- table(qual$colonia, qual$preg_cinco)
+print(table_preg_cinco_colonia)
+
+fisher_result <- fisher.test(table_preg_cinco_colonia)
+print(fisher_result)
+```
+
+```{r}
+table_preg_seis_colonia <- table(qual$colonia, qual$preg_seis)
+print(table_preg_seis_colonia)
+
+fisher_result <- fisher.test(table_preg_seis_colonia)
+print(fisher_result)
+```
+
+
+```{r}
+library(plotrix)
+slices <- c(257, 84, 64, 24, 7)
+
+lbls <- c("Island region 1", "Island region 2", "Island region 3", "Island region 4", "Island region 5")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls, pct)
+# add percents to labels
+lbls <- paste(lbls,"%") # ad % to labels
+pie(slices,labels = lbls, col=rainbow(length(lbls)),
+   main="Pie Chart of ")
+```
+
