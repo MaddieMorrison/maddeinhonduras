@@ -17,8 +17,111 @@ qual |>
  count(`island_region`) |>
 mutate(prob = n/sum(n))
 
+
+
+
+# Convert 'years' to numeric if necessary
+qual$years_category <- as.factor(qual$years_category)
+             
+qual|>
+  ggplot(aes( x = island_region, fill = years_category)) +
+  geom_bar()
+
+```
+```{r}
+
+qual <- qual %>%
+  mutate(years_category = ifelse(years_category %in% c(7, 8, 9) | is.na(years_category), 7, years_category)) %>%
+  mutate(years_category = as.factor(years_category))
+
+
+qual_counts <- qual %>%
+  group_by(island_region, years_category) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  mutate(proportion = count / sum(count))
+
+years_labels <- c("1" = "< 1 year", "2" = "1-5 years", "3" = "6-10 years", "4" = "11-20 years", "5" = ">20 years", "6" = "Native or born on the island", "7" = "No answer, 'Unknown', 
+'Many years'
+or 'comes and goes'")
+
+
+ggplot(qual_counts, aes(x = island_region, y = proportion, fill = years_category)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_text(aes(label = count), position = position_fill(vjust = 0.5), size = 3) +
+  labs(x = "Island Region", y = "Proportion", fill = "Years in Roatan", title = "Distribution of years in Roatan by Island Region") +
+scale_fill_manual(values = scales::hue_pal()(7), labels = years_labels) +
+  theme_minimal()
+
 ```
 
+
+
+```{r}
+library(tidyr)
+library(ggplot2)
+df <- data.frame(
+  Question = c("Question 1", "Question 2", "Question 3", "Question 4", "Question 5", "Question 6"),
+  Non_Colonia_Yes = c(0.877, 0.717, 0.713, 0.713, 0.996, 0.984),
+  Colonia_Yes = c(0.823, 0.778, 0.649, 0.816, 0.995, 0.989)
+)
+
+
+
+# Plot using ggplot2
+library(tidyr)
+df_long <- gather(df, key = "Category", value = "Percentage", -Question)
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = Question, y = Percentage, fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(Percentage * 100), "%"), 
+                y = Percentage, 
+                group = Category), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3) +
+  labs(title = "Percentage of 'Yes' Responses by Question",
+       x = "Question",
+       y = "Percentage") +
+  scale_fill_manual(values = c("Non_Colonia_Yes" = "#009999", "Colonia_Yes" = "#FF9933"),
+                    labels = c("La Colonia", "Non-Colonia")) +
+  theme_minimal()
+```
+
+```{r}
+qual |>
+ count(survey_location)
+
+qual |>
+  ggplot( aes(x = survey_location, fill = survey_location)) + 
+  geom_bar() +
+   geom_text(stat='count', aes(label=..count..), vjust=-0.5) +
+  labs(x = "Survey Location", y = "# Surveys Administered", title = "Distribution of Survey Location", fill = "Survey Location")
+ggsave("plot1.png")
+
+
+```
+
+
+
+```{r}
+qual <- qual %>%
+  mutate(years_category = ifelse(years_category %in% c(7, 8, 9) | is.na(years_category), 7, years_category)) %>%
+  mutate(years_category = as.factor(years_category))
+
+# Calculate counts and proportions
+qual_counts <- qual %>%
+  group_by(colonia, years_category) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  mutate(proportion = count / sum(count))
+
+# Create the plot with actual counts
+ggplot(qual_counts, aes(x = colonia, y = proportion, fill = years_category)) +
+  geom_bar(stat = "identity", position = "fill") +
+  geom_text(aes(label = count), position = position_fill(vjust = 0.5), size = 3) +
+  labs(x = "Colonia", y = "Proportion", fill = "Years Category") +
+  theme_minimal()
+```
 
 
 
@@ -31,6 +134,8 @@ fisher_result <- fisher.test(table_preg_uno_colonia)
 print(fisher_result)
 
 ```
+
+
 
 ```{r}
 table_preg_dos_colonia <- table(qual$colonia, qual$preg_dos)
@@ -88,4 +193,7 @@ lbls <- paste(lbls,"%") # ad % to labels
 pie(slices,labels = lbls, col=rainbow(length(lbls)),
    main="Pie Chart of ")
 ```
+
+
+
 
