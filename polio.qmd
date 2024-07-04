@@ -1,0 +1,57 @@
+```{r}
+library(viridis)
+```
+
+#LASTGRADEAND ISLAND
+```{r}
+#qual|> 
+      # ggplot(aes(x = island_region, fill = as.factor(last_grade_category))) + 
+  # geom_bar() + 
+ #scale_color_viridis(discrete=TRUE, option = "D", name="Sex")
+```
+
+#lastgradeandisland
+```{r}
+qual |>
+ count(last_grade_category$island_region) |>
+mutate(prob = n/sum(n))
+
+```
+
+```{r}
+proportions <- qual |>
+  filter(last_grade_category != "NA") |>
+  group_by(colonia, last_grade_category) |>
+  summarise(count = n()) |>
+  mutate(proportion = count / sum(count))
+
+ggplot(proportions, aes(x = colonia, y = proportion, fill = last_grade_category)) +
+  geom_bar(stat = "identity", position = "fill") +
+  labs(title = "Last grade finished by community",
+       x = "Community",
+       y = "Proportion", ) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal()
+
+```
+
+#vAXED AT CE
+
+```{r}
+qual <- qual %>%
+  mutate(vaxedatce = if_else(grepl("CE", vax_location), "Contains CE", "Does not contain CE"))
+
+# View the first few rows of the updated dataset to verify the new variable
+
+
+
+qual|>
+  filter (vax_location != "NA") |>
+  ggplot(aes( x=island_region, fill = vaxedatce)) +
+  geom_histogram() +
+  labs ( x = "Island region", y = "Proportion", fill = "Includes CE")
+
+
+#do it with vax location on bottom
+
+```
