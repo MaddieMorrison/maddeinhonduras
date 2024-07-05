@@ -54,6 +54,49 @@ scale_fill_manual(values = scales::hue_pal()(7), labels = years_labels) +
 
 ```
 
+```{r}
+library(dplyr)
+library(ggplot2)
+
+
+qual2 <- qual2 %>%
+  mutate(vaxedatce = if_else(grepl("CE", vax_location), "Contains CE", "Does not contain CE")) 
+
+# Create a contingency table
+table(qual2$island_region, qual2$vaxedatce)
+
+# Perform a Chi-Square test
+chisq.test(table(qual2$island_region, qual2$vaxedatce))
+
+# Visualize the relationship
+# Bar plot
+ggplot(qual2, aes(x = island_region, fill = vaxedatce)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Vaccination Location by Community",
+       x = "Community",
+       y = "Count",
+       fill = "Vaccination Location")
+
+# Mosaic plot
+library(ggmosaic)
+ggplot(qual2) +
+  geom_mosaic(aes(weight = 1, x = product(island_region, vaxedatce), fill = vaxedatce)) +
+  labs(title = "Mosaic Plot of Vaccination Location by Community",
+       x = "Community",
+       y = "Proportion",
+       fill = "Vaccination Location")
+```
+```{r}
+library(ggplot2)
+ggplot(qual2, aes(vaxedatce, island_region)) +
+ geom_raster(aes(fill = island_region), interpolate = TRUE)
+```
+
+
+```{r}
+qual2 |>
+  count(vaxedatce)
+```
 
 
 ```{r}
@@ -87,6 +130,32 @@ ggplot(df_long, aes(x = Question, y = Percentage, fill = Category)) +
                     labels = c("La Colonia", "Non-Colonia")) +
   theme_minimal()
 ```
+
+
+```{r}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r}
 qual |>

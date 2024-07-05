@@ -1,6 +1,19 @@
 ```{r}
 library(viridis)
+library(dplyr)
+library(ggplot2)
 ```
+
+
+```{r}
+mean_birth_year <- qual %>%
+  filter(relation_to_child == "Mother") %>%
+  filter(!is.na(respondent_birth_year)) %>%
+  summarise(mean_year = mean(as.numeric(respondent_birth_year)))
+
+mean_birth_year
+```
+
 
 #LASTGRADEAND ISLAND
 ```{r}
@@ -19,19 +32,20 @@ mutate(prob = n/sum(n))
 ```
 
 ```{r}
+
 proportions <- qual |>
   filter(last_grade_category != "NA") |>
+   mutate(colonia = factor(colonia, levels = c("Yes", "No"), labels = c("Colonia", "Non-Colonia"))) |>
   group_by(colonia, last_grade_category) |>
   summarise(count = n()) |>
   mutate(proportion = count / sum(count))
+
 
 ggplot(proportions, aes(x = colonia, y = proportion, fill = last_grade_category)) +
   geom_bar(stat = "identity", position = "fill") +
   labs(title = "Last grade finished by community",
        x = "Community",
-       y = "Proportion", ) +
-  scale_y_continuous(labels = scales::percent) +
-  theme_minimal()
+       y = "Proportion",last_grade_category = "Education level finished", fill = "Yes") 
 
 ```
 
