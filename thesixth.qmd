@@ -1,0 +1,22 @@
+```{r}
+library(psych)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(foreign)
+library(ggplot2)
+library(magrittr)
+
+```
+
+
+
+```{r}
+qual <- qual %>%
+  mutate(clinicvaccination = if_else(grepl("CE", vax_location), "Contains CE", "Does not contain CE")) 
+
+qual <- qual %>%
+  mutate(hospitalvaccination = if_else(grepl("Hosp", vax_location), "Contains Hosp", "No")) 
+```
+

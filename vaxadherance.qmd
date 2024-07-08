@@ -1,0 +1,106 @@
+```{r}
+
+library(tidyr)
+library(ggplot2)
+df <- data.frame(
+Vaccine = c("aaHep B", "abBCG", "acPolio VPI 1", "adPolio VPI 2", "aePolio VOP 1", "afPolio VOP 2", "agPenta 1", "ahPenta 2", "aiPenta3","ajnuemo1","aknuemo2","alnuemo3","amrota1","anrota2","aommr1","apmmr2","aqhepA","arDPT1","asDPT2","atvph1","autet"),
+Everyone = c(0.9444444, 0.9703704, 0.9962825, 0.9625468
+, 0.9291339, 0.8243902, 0.9888476, 0.9588015, 0.9448819, 0.9739777,0.9400749, 0.9330709
+, 0.9814126,0.9475655, 0.9521739
+, 0.8341463, 0.5173913, 0.8926829
+, 0.7984496, 0.1666667,0.4444444
+
+
+)
+)
+
+
+# Plot using ggplot2
+library(tidyr)
+df_long <- gather(df, key = "Category", value = "Percentage", -Vaccine)
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = Vaccine, y = Percentage, fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(Percentage * 100), "%"), 
+                y = Percentage, 
+                group = Category), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3) +
+  labs(title = "Vaccine Adherence Across Total Sample",
+       x = "Vaccine",
+       y = "Percentage of Eligible 
+Children Vaccinated") +
+  scale_x_discrete(labels = c("Hepatitis B", "BCG", "Polio Vaccine 1", "Polio Vaccine 2", "Polio Vaccine 3", "Polio Vaccine 4", "Pentavalent 1", "Pentavalent 2", "Pentavalent 3", "Pneumococcal 1","Pneumococcal 2","Pneumococcal 3","Rotavirus 1","Rotavirus 2", "MMR 1","MMR 2", "Hepatitis A", "DPT 1", "DPT 2","HPV","Tetanus (Td)")) +  # Set x-axis labels
+ theme_minimal() +
+  theme(
+    legend.position = "none",  # Remove the legend
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+```
+
+```{r}
+library(tidyr)
+library(ggplot2)
+df <- data.frame(
+Vaccine = c("aaHep B", "abBCG", "acPolio VPI 1", "adPolio VPI 2", "aePolio VOP 1", "afPolio VOP 2", "agPenta 1", "ahPenta 2", "aiPenta3","ajnuemo1","aknuemo2","alnuemo3","amrota1","anrota2","aommr1","apmmr2","aqhepA","arDPT1","asDPT2","atvph1","autet"),
+Colonia_Yes = c(0.9378882, 0.9689441, 1, 0.9875, 0.9423077, 0.8062016, 0.9937888, 0.98125, 0.9679487, 0.9689441, 0.95625, 0.9423077, 0.9813665, 0.96875, 0.9788732, 0.8449612, 0.4929577, 0.8837209, 0.8068182, 0.2, 0.4285714), Non_Colonia_Yes = c(0.9541284, 0.9724771, 0.9907407, 0.9252336, 0.9081633, 0.8552632,0.9814815, 0.9252336, 0.9081633, 0.9814815, 0.9158879, 0.9183673, 0.9814815, 0.9158879, 0.9204545, 0.8157895, 0.5568182, 0.9078947, 0.7804878, 0, 0.5))
+
+
+
+
+
+
+# Plot using ggplot2
+library(tidyr)
+df_long <- gather(df, key = "Category", value = "Percentage", -Vaccine)
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = Vaccine, y = Percentage, fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(Percentage * 100), "%"), 
+                y = Percentage, 
+                group = Category), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3) +
+  labs(title = "Vaccine Adherence Across Total Sample",
+       x = "Vaccine",
+       y = "Percentage of Eligible 
+Children Vaccinated") +
+  scale_x_discrete(labels = c("Hepatitis B", "BCG", "Polio Vaccine 1", "Polio Vaccine 2", "Polio Vaccine 3", "Polio Vaccine 4", "Pentavalent 1", "Pentavalent 2", "Pentavalent 3", "Pneumococcal 1","Pneumococcal 2","Pneumococcal 3","Rotavirus 1","Rotavirus 2", "MMR 1","MMR 2", "Hepatitis A", "DPT 1", "DPT 2","HPV","Tetanus (Td)")) +  # Set x-axis labels
+ scale_fill_manual(values = c("Colonia_Yes" = "skyblue", "Non_Colonia_Yes" = "orange"), labels = c("Colonia_Yes" = "La Colonia ", "Non_Colonia_Yes" = "Non Colonia")) +  # Custom labels for the legend
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
+```
+
+```{r}
+install.packages("reshape2")
+library(reshape2)
+library(ggplot2)
+library(viridis)
+
+heatmapdf <- data.frame(
+  Vaccine = c("aaHep B", "abBCG", "acPolio VPI 1", "adPolio VPI 2", "aePolio VOP 1", "afPolio VOP 2", "agPenta 1", "ahPenta 2", "aiPenta3","ajnuemo1","aknuemo2","alnuemo3","amrota1","anrota2","aommr1","apmmr2","aqhepA","arDPT1","asDPT2","atvph1","autet"),
+  "Overall_coverage" = c(0.9444444, 0.9703704, 0.8624535, 0.7265918, 0.9370079, 0.9219512, 0.9851301, 0.9588015, 0.9409449,0.9702602,0.9400749, 0.9291339,0.9776952,  0.9475655,0.9478261, 0.8195122, 0.5086957, 0.8829268, 0.7984496, 0.1666667, 0.4444444),
+  "Colonia_yes" = c(0.9378882, 0.9689441, 0.8447205, 0.7, 0.9551282, 0.9379845, 0.9937888, 0.98125, 0.9679487, 0.9689441, 0.95625, 0.9423077, 0.9813665, 0.96875, 0.971831, 0.8294574, 0.4859155, 0.875969, 0.8068182, 0.2, 0.4285714),  "Non_Colonia" = c(0.9541284, 0.9724771, 0.8888889, 0.7663551, 0.9081633, 0.8947368, 0.9722222, 0.9252336, 0.8979592, 0.9722222, 0.9158879, 0.9081633, 0.9722222, 0.9158879, 0.9090909, 0.8026316, 0.5454545, 0.8947368, 0.7804878, 0, 0.5)
+
+
+
+)
+
+df_melt <- reshape2::melt(heatmapdf, id.vars = "Vaccine")
+
+# Step 4: Create the heatmap
+ggplot(df_melt, aes(x = Vaccine, y = variable, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "red",limits = c(0.75, 1),oob = scales::squish) +
+  theme_minimal() +
+  scale_x_discrete(labels = c("Hepatitis B", "BCG", "Polio VPI 1", "Polio VPI 2", "Polio VOP 1", "Polio VOP 2", "Pentavalent 1", "Pentavalent 2", "Pentavalent 3", "Pneumococcal 1","Pneumococcal 2","Pneumococcal 3","Rotavirus 1","Rotavirus 2", "MMR 1","MMR 2", "Hepatitis A", "DPT 1", "DPT 2","HPV 1","Tetanus (Td)"))+
+  labs(title = "Heatmap of Vaccine Coverage", x = "Vaccine", y = "Coverage") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+#scale_x_discrete(labels = c("No", "Yes")) + \# Set x-axis labels #theme_minimal() + #theme(legend.position = "none")
